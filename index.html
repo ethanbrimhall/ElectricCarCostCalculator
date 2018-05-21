@@ -1,0 +1,213 @@
+<html>
+    <head>
+        <title>Electric Car Cost</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="ethan brimhall, electric car, electric vehicle, electric vehicle cost, tesla cost, tesla electricity cost, car electric cost">
+	<meta name="description" content="How much does your electric vehicle cost in electricty? Find out with three easy steps!">
+	<meta name="author" content="Ethan Brimhall">
+        <link rel = "stylesheet" href = "index.css">
+        <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    </head>
+    
+    <style>
+        
+    @media only screen and (max-width: 1000px) {
+        #fieldBubble{
+            width: 100%;
+        }
+        #helpBubble{
+            width: 100%;
+        }
+        #calculate{
+            width: 70%;
+        }
+        #stateCost{
+            width: 100%;
+        }
+        #range{
+            width: 100%;
+        }
+        #averageMiles{
+            width: 100%;
+        }
+        #kwhPer100{
+            width: 100%;
+        }
+    }      
+    
+    </style>
+    
+    <script>
+        
+    function hideLine(){
+        document.getElementById("line").style.visibility="hidden";
+    }
+    function findCost(){
+        var range = parseFloat(document.getElementById("range").value);
+        var averageMiles = parseFloat(document.getElementById("averageMiles").value);
+        var kwhPer100 = parseFloat(document.getElementById("kwhPer100").value);
+        var electricityCost = document.getElementById("stateCost").value;
+        electricityCost = parseFloat(electricityCost);
+        
+        var costPer100 = kwhPer100 * electricityCost;
+        var costPer1 = costPer100 / 100;
+        var costPerWeek = costPer100 * ((range / 100) * (averageMiles / range));
+        var costPerYear = costPerWeek * 52;
+        document.getElementById("costTitle").innerHTML = "Results";
+        document.getElementById("mile").innerHTML = "Cost Per Mile: $" + costPer1.toFixed(2);
+        document.getElementById("week").innerHTML = "Cost Per Week: $" + costPerWeek.toFixed(2);
+        document.getElementById("year").innerHTML = "Cost Per Year: $" + costPerYear.toFixed(2);
+        document.getElementById("line").style.visibility="visible";
+    }
+    
+    </script>
+    
+    
+    <body onload = "hideLine()">
+        <img id = "car1" src="car1.png" alt = "car1">
+        
+        
+        <div id = "fieldBubble">
+            <h2 id = "title">How Much Does Your Electric Vehicle Cost in Electricity?</h2>
+            <h3 id = "rangeTitle">What is Your Car's Range in Miles</h3>
+            <input id = "range" type = "number">
+
+
+            <h3 id = "averageTitle">How Many Miles Do You Drive a Week</h3>
+            <input id = "averageMiles" type = "number">
+
+            <h3 id = "per100Title">What is Your Car's kWh Per 100 Miles</h3>
+            <input id = "kwhPer100" type = "number">
+
+            <h3 id = "stateCostTitle">Select your state</h3>
+            <select id = "stateCost">
+                <option value=".1229">Alabama</option>
+                <option value=".2111">Alaska</option>
+                <option value=".1220">Arizona</option>
+                <option value=".0980">Arkansas</option>
+                <option value=".1915">California</option>
+                <option value=".1173">Colorado</option>
+                <option value=".2159">Connecticut</option>
+                <option value=".1260">Delaware</option>
+                <option value=".1338">District of Columbia</option>
+                <option value=".1214">Florida</option>
+                <option value=".1083">Georgia</option>
+                <option value=".3152">Hawaii</option>
+                <option value=".1010">Idaho</option>
+                <option value=".1223">Illinois</option>
+                <option value=".1152">Indiana</option>
+                <option value=".1165">Iowa</option>
+                <option value=".1287">Kansas</option>
+                <option value=".1036">Kentucky</option>
+                <option value=".0894">Louisiana</option>
+                <option value=".1622">Maine</option>
+                <option value=".1343">Maryland</option>
+                <option value=".2223">Massachusetts</option>
+                <option value=".1562">Michigan</option>
+                <option value=".1256">Minnesota</option>
+                <option value=".0978">Missouri</option>
+                <option value=".1126">Mississippi</option>
+                <option value=".1070">Montana</option>
+                <option value=".0961">Nebraska</option>
+                <option value=".1250">Nevada</option>
+                <option value=".1984">New Hampshire</option>
+                <option value=".1587">New Jersey</option>
+                <option value=".1221">New Mexico</option>
+                <option value=".1819">New York</option>
+                <option value=".1144">North Carolina</option>
+                <option value=".0915">North Dakota</option>
+                <option value=".1225">Ohio</option>
+                <option value=".0985">Oklahoma</option>
+                <option value=".1073">Oregon</option>
+                <option value=".1395">Pennsylvania</option>
+                <option value=".2166">Rhode Island</option>
+                <option value=".1104">South Carolina</option>
+                <option value=".1076">South Dakota</option>
+                <option value=".1033">Tennessee</option>
+                <option value=".1108">Texas</option>
+                <option value=".1041">Utah</option>
+                <option value=".1803">Vermont</option>
+                <option value=".1147">Virginia</option>
+                <option value=".0954">Washington</option>
+                <option value=".1138">West Virginia</option>
+                <option value=".1429">Wisconsin</option>
+                <option value=".1086">Wyoming</option>
+
+            </select><br/><br/><br/>
+
+            <button id = "calculate" type="button" onclick="findCost()">Calculate Cost</button>
+            <h1 id = "line"></h1>
+            <h3 id = "costTitle"></h3>
+                
+            <h3 id = "mile"></h3>
+            <h3 id = "week"></h3>
+            <h3 id = "year"></h3>
+        </div>
+        <div id = "helpBubble">
+            <h1 id = "helpTitle">Need Help Finding Your Car's kWh Per 100 Miles?</h1>
+            <h2 id = "helpTitle2">Below are a few popular Electric Cars. If yours is not listed, do a Google search</h2>
+            
+            <ul>
+                <li>
+                    <span class="label">2017 Nissan Leaf</span>
+                    30
+                </li>
+                <li>
+                    <span class="label">2017 Tesla Model 3</span>
+                    27
+                </li>
+                <li>
+                    <span class="label">2017 Tesla Model X</span>
+                    36
+                </li>
+                <li>
+                    <span class="label">2017 Tesla Model S</span>
+                    34
+                </li>
+                <li>
+                    <span class="label">2017 Ford Focus Electric</span>
+                    31
+                </li>
+                <li>
+                    <span class="label">2017 BMW i3</span>
+                    27
+                </li>
+                <li>
+                    <span class="label">2017 Chevy Bolt</span>
+                    28
+                </li>
+                <li>
+                    <span class="label">2018 Hyundai Ioniq Electric</span>
+                    25
+                </li>
+                <li>
+                    <span class="label">2018 Volkswagen e-Golf</span>
+                    28
+                </li>
+                <li>
+                    <span class="label">2018 Handa Clarity EV</span>
+                    30
+                </li>
+                <li>
+                    <span class="label">2018 Fiat 500e</span>
+                    30
+                </li>
+            </ul>
+            
+        </div>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- electricCarWebsiteAd -->
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-1528369425813423"
+                data-ad-slot="2827401219"
+                data-ad-format="auto"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </body>
+    
+</html>
